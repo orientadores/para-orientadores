@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#fff9f1">
+  <title>Para futuros orientadores 🌷</title>
+ 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+ 
+  <style>
+    :root {
+      /* Paleta de la presentación */
+      --cream: #fff9f1;
+      --pink: #f5bfd9;
+      --pink-hot: #ff8dc7;
+      --crimson: #b0083b;
+      --ink: #1d1a22;
+      --soft-text: #5d5266;
+      --blue: #8fcff5;
+      --yellow: #ffd96b;
+      --green: #9fd8bc;
+      --purple: #c4aee8;
+      --leaf: #5e8c4a;
+    }
+ 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+ 
+    html, body {
+      width: 100%;
+      min-height: 100%;
+    }
+ 
+    body {
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+      padding: max(16px, env(safe-area-inset-top)) 0 max(16px, env(safe-area-inset-bottom));
+      font-family: "Lexend", sans-serif;
+      color: var(--ink);
+      position: relative;
+      background: var(--cream);
+    }
+ 
+    .card {
+      width: min(92%, 520px);
+      min-height: min(94vh, 690px);
+      padding: 38px 26px 28px;
+      text-align: center;
+      background: var(--cream);
+      border: 2.5px dashed var(--ink);
+      border-radius: 30px;
+      box-shadow: 0 24px 60px rgba(60, 30, 50, 0.14);
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+    }
+ 
+    /* Rayitas azules decorativas, como en las diapositivas */
+    .dashes {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      width: 46px;
+      height: 46px;
+      pointer-events: none;
+    }
+ 
+    .dashes span {
+      position: absolute;
+      height: 6px;
+      border-radius: 6px;
+      background: var(--blue);
+    }
+ 
+    .dashes span:nth-child(1) { width: 20px; top: 8px;  left: 2px;  transform: rotate(-62deg); }
+    .dashes span:nth-child(2) { width: 22px; top: 21px; left: 16px; transform: rotate(-30deg); }
+    .dashes span:nth-child(3) { width: 22px; top: 35px; left: 20px; transform: rotate(-8deg); }
+ 
+    .small-title {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: var(--soft-text);
+      margin: 0 40px 14px;
+      line-height: 1.4;
+    }
+ 
+    .title-pill {
+      align-self: center;
+      background: var(--pink);
+      box-shadow: inset 4px 4px 0 var(--pink-hot);
+      outline: 2px dashed var(--ink);
+      outline-offset: 5px;
+      border-radius: 36px;
+      padding: 16px 28px;
+      margin-bottom: 18px;
+    }
+ 
+    h1 {
+      font-family: "DM Serif Display", serif;
+      font-weight: 400;
+      font-size: clamp(28px, 7vw, 40px);
+      line-height: 1.08;
+      color: var(--crimson);
+    }
+ 
+    .subtitle {
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--soft-text);
+      margin-bottom: 20px;
+    }
+ 
+    .give {
+      position: relative;
+      z-index: 30;
+      align-self: center;
+      border: 2px dashed var(--ink);
+      padding: 13px 28px;
+      border-radius: 18px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      color: var(--crimson);
+      background: var(--yellow);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+ 
+    .give:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 0 rgba(29, 26, 34, 0.12);
+    }
+ 
+    .give:active {
+      transform: scale(0.97);
+    }
+ 
+    .give:focus-visible {
+      outline: 3px solid var(--crimson);
+      outline-offset: 3px;
+    }
+ 
+    .bouquet {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      height: 250px;
+      margin: 28px auto 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      pointer-events: none;
+    }
+ 
+    .stem-wrap {
+      position: absolute;
+      bottom: 0;
+      transform-origin: bottom center;
+      pointer-events: none;
+      z-index: 1;
+    }
+ 
+    .stem-wrap.sway {
+      animation: naturalSway var(--sway-duration) ease-in-out infinite;
+      animation-delay: var(--sway-delay);
+    }
+ 
+    @keyframes naturalSway {
+      0%, 100% {
+        transform: translateX(-50%) scale(var(--flower-scale)) rotate(calc(var(--flower-rotation) - 0.8deg));
+      }
+      20% {
+        transform: translateX(-50%) scale(var(--flower-scale)) rotate(calc(var(--flower-rotation) + 0.2deg));
+      }
+      45% {
+        transform: translateX(-50%) scale(var(--flower-scale)) rotate(calc(var(--flower-rotation) + 1.15deg));
+      }
+      70% {
+        transform: translateX(-50%) scale(var(--flower-scale)) rotate(calc(var(--flower-rotation) - 0.15deg));
+      }
+    }
+ 
+    svg {
+      display: block;
+      overflow: visible;
+    }
+ 
+    /* pathLength="100" en el tallo: así el dibujo funciona sin importar la altura */
+    .stem {
+      fill: none;
+      stroke: var(--leaf);
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-dasharray: 100;
+      stroke-dashoffset: 100;
+    }
+ 
+    .leaf {
+      fill: var(--leaf);
+      opacity: 0;
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+ 
+    .tulip-head {
+      opacity: 0;
+      transform: scale(0.1);
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+ 
+    .bloom .stem {
+      animation: growStem 0.9s ease-out forwards;
+    }
+ 
+    .bloom .leaf {
+      animation: leafAppear 0.55s ease-out forwards;
+    }
+ 
+    .bloom .tulip-head {
+      animation: flowerAppear 0.75s cubic-bezier(.2,1.5,.4,1) forwards;
+    }
+ 
+    @keyframes growStem {
+      to { stroke-dashoffset: 0; }
+    }
+ 
+    @keyframes leafAppear {
+      0%   { opacity: 0; transform: scale(0); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+ 
+    @keyframes flowerAppear {
+      0%   { opacity: 0; transform: scale(0.1) rotate(-8deg); }
+      70%  { opacity: 1; transform: scale(1.08) rotate(2deg); }
+      100% { opacity: 1; transform: scale(1) rotate(0); }
+    }
+ 
+    .note {
+      max-width: 400px;
+      margin: 6px auto 0;
+      padding: 14px 18px 16px;
+      background: var(--green);
+      border: 2px dashed var(--ink);
+      border-radius: 18px;
+      opacity: 0;
+      transform: translateY(15px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+ 
+    .note.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+ 
+    .to {
+      font-size: 13px;
+      color: var(--crimson);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+ 
+    .message {
+      font-family: "DM Serif Display", serif;
+      font-style: italic;
+      font-size: 19px;
+      line-height: 1.45;
+      color: var(--ink);
+    }
+ 
+    .hint {
+      margin-top: auto;
+      padding-top: 16px;
+      font-size: 12px;
+      color: var(--soft-text);
+    }
+ 
+    .falling-petal {
+      position: fixed;
+      top: -30px;
+      pointer-events: none;
+      z-index: 50;
+      border-radius: 70% 30% 70% 30%;
+      opacity: 0;
+      will-change: transform;
+      animation: fallPetal linear forwards;
+    }
+ 
+    @keyframes fallPetal {
+      0% {
+        opacity: 0;
+        transform: translate3d(0, -30px, 0) rotate(0deg);
+      }
+      10% { opacity: 0.95; }
+      25% { transform: translate3d(var(--drift-1), 25vh, 0) rotate(var(--rotation-1)); }
+      50% { transform: translate3d(var(--drift-2), 52vh, 0) rotate(var(--rotation-2)); }
+      75% { transform: translate3d(var(--drift-3), 78vh, 0) rotate(var(--rotation-3)); }
+      100% {
+        opacity: 0;
+        transform: translate3d(var(--drift-4), 110vh, 0) rotate(var(--rotation-4));
+      }
+    }
+ 
+    .sparkle {
+      position: fixed;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 60;
+      animation: sparkle 1.2s ease-out forwards;
+    }
+ 
+    @keyframes sparkle {
+      0%   { opacity: 0; transform: scale(0); }
+      25%  { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: translate(var(--x), var(--y)) scale(0); }
+    }
+ 
+    .heart {
+      position: fixed;
+      pointer-events: none;
+      z-index: 55;
+      font-size: 14px;
+      animation: heartFloat 2s ease-out forwards;
+    }
+ 
+    @keyframes heartFloat {
+      0%   { opacity: 0; transform: translateY(10px) scale(0.5); }
+      20%  { opacity: 1; }
+      100% { opacity: 0; transform: translateY(-100px) translateX(var(--heart-x)) scale(1.2); }
+    }
+ 
+    .special-message {
+      position: fixed;
+      left: 50%;
+      top: 42%;
+      transform: translate(-50%, -50%) scale(0.8);
+      z-index: 70;
+      pointer-events: none;
+      opacity: 0;
+      width: max-content;
+      max-width: 88vw;
+      text-align: center;
+      padding: 14px 30px;
+      background: var(--pink);
+      box-shadow: inset 4px 4px 0 var(--pink-hot);
+      outline: 2px dashed var(--ink);
+      outline-offset: 5px;
+      border-radius: 999px;
+      font-family: "DM Serif Display", serif;
+      font-size: clamp(22px, 6vw, 34px);
+      color: var(--crimson);
+    }
+ 
+    .special-message.show {
+      animation: specialMessage 2.6s ease-out forwards;
+    }
+ 
+    @keyframes specialMessage {
+      0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+      20%  { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
+      65%  { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+      100% { opacity: 0; transform: translate(-50%, -70%) scale(0.98); }
+    }
+ 
+    @media (max-width: 500px) {
+      .card {
+        width: 92%;
+        padding: 32px 16px 24px;
+      }
+ 
+      .small-title { margin: 0 30px 12px; }
+      .bouquet { height: 225px; margin-top: 24px; }
+      .message { font-size: 17px; }
+      .give { padding: 12px 24px; }
+    }
+ 
+    @media (max-height: 700px) {
+      .card {
+        padding-top: 24px;
+        padding-bottom: 18px;
+      }
+ 
+      .bouquet { height: 205px; margin-top: 18px; }
+      .hint { padding-top: 8px; }
+    }
+ 
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+ 
+      .stem { stroke-dashoffset: 0 !important; }
+ 
+      .leaf, .tulip-head {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+ 
+      .falling-petal, .sparkle, .heart, .special-message {
+        display: none;
+      }
+    }
+  </style>
+</head>
+ 
+<body>
+  <main class="card">
+    <div class="dashes" aria-hidden="true"><span></span><span></span><span></span></div>
+ 
+    <p class="small-title">Autoconocimiento y Autorregulación del Aprendizaje</p>
+ 
+    <div class="title-pill">
+      <h1>Flores para futuros orientadores</h1>
+    </div>
+ 
+    <p class="subtitle">Círculo de diálogo de paz virtual 🌷</p>
+ 
+    <button class="give" id="giveBtn" type="button">
+      Recibir las flores 🌷
+    </button>
+ 
+    <div class="bouquet" id="bouquet" aria-hidden="true"></div>
+ 
+    <div class="note" id="note">
+      <p class="to">Para futuros orientadores 💗</p>
+      <p class="message">
+        "Conocernos es descubrir nuestro mundo interior;
+        aprender es encontrar nuevas maneras de crecer."
+      </p>
+    </div>
+ 
+    <p class="hint" id="hint">
+      Dale clic al botón para que florezcan ✨
+    </p>
+  </main>
+ 
+  <div class="special-message" id="specialMessage">
+    ¡Para futuros orientadores!
+  </div>
+ 
+  <script>
+    const bouquet = document.getElementById("bouquet");
+    const button = document.getElementById("giveBtn");
+    const note = document.getElementById("note");
+    const hint = document.getElementById("hint");
+    const specialMessage = document.getElementById("specialMessage");
+ 
+    let bloomed = false;
+    let busy = false;
+ 
+    // Colores de tulipán tomados de la ilustración de la presentación
+    const palettes = {
+      pink:   { back: "#ee7c8e", front: "#f9a3b5", shine: "#fdd3dc" },
+      yellow: { back: "#f0b93a", front: "#ffd96b", shine: "#fff0ae" }
+    };
+ 
+    const tulips = [
+      { left: "17%", height: 165, rotate: -9, scale: 0.84, delay: 0,   swayDuration: 4.8, swayDelay: -1.2, color: "pink" },
+      { left: "34%", height: 190, rotate: -4, scale: 0.97, delay: 180, swayDuration: 5.4, swayDelay: -2.7, color: "yellow" },
+      { left: "50%", height: 215, rotate: 0,  scale: 1.1,  delay: 300, swayDuration: 5.8, swayDelay: -1.8, color: "pink" },
+      { left: "66%", height: 190, rotate: 4,  scale: 0.97, delay: 180, swayDuration: 5.1, swayDelay: -3.5, color: "yellow" },
+      { left: "83%", height: 165, rotate: 9,  scale: 0.84, delay: 0,   swayDuration: 4.6, swayDelay: -2.1, color: "pink" }
+    ];
+ 
+    function createTulip(config) {
+      const width = 70;
+      const center = width / 2;
+      const height = config.height;
+      const c = palettes[config.color];
+ 
+      const petal = "M0,0 C-15,-7 -17,-30 0,-47 C17,-30 15,-7 0,0 Z";
+ 
+      return `
+        <svg width="${width}" height="${height + 55}"
+             viewBox="0 0 ${width} ${height + 55}">
+          <path class="stem" pathLength="100"
+            d="M ${center} ${height + 40}
+               C ${center - 8} ${height * 0.65},
+                 ${center + 10} ${height * 0.42},
+                 ${center} 45" />
+ 
+          <path class="leaf"
+            d="M ${center} ${height * 0.70}
+               C ${center - 32} ${height * 0.55},
+                 ${center - 38} ${height * 0.72},
+                 ${center} ${height * 0.84} Z" />
+ 
+          <path class="leaf"
+            d="M ${center} ${height * 0.55}
+               C ${center + 32} ${height * 0.42},
+                 ${center + 37} ${height * 0.62},
+                 ${center} ${height * 0.70} Z" />
+ 
+          <g transform="translate(${center} 45)">
+            <g class="tulip-head">
+              <path d="M-8,1 C-6,-4 6,-4 8,1 C5,4 -5,4 -8,1 Z" fill="#5e8c4a"/>
+ 
+              <path d="${petal}" fill="${c.back}"
+                    transform="rotate(-22) translate(-4,1) scale(.95)"/>
+ 
+              <path d="${petal}" fill="${c.back}"
+                    transform="rotate(22) translate(4,1) scale(.95)"/>
+ 
+              <path d="${petal}" fill="${c.front}"/>
+ 
+              <path d="M-4,-12 C-4,-25 4,-25 4,-12 L4,-3 C4,2 -4,2 -4,-3 Z"
+                    fill="${c.shine}" opacity=".7"/>
+            </g>
+          </g>
+        </svg>
+      `;
+    }
+ 
+    function buildBouquet() {
+      bouquet.innerHTML = "";
+ 
+      tulips.forEach(config => {
+        const wrapper = document.createElement("div");
+        wrapper.className = "stem-wrap";
+        wrapper.style.left = config.left;
+ 
+        wrapper.style.setProperty("--flower-scale", config.scale);
+        wrapper.style.setProperty("--flower-rotation", `${config.rotate}deg`);
+        wrapper.style.setProperty("--sway-duration", `${config.swayDuration}s`);
+        wrapper.style.setProperty("--sway-delay", `${config.swayDelay}s`);
+ 
+        wrapper.style.transform =
+          `translateX(-50%) scale(${config.scale}) rotate(${config.rotate}deg)`;
+ 
+        wrapper.innerHTML = createTulip(config);
+ 
+        const stem = wrapper.querySelector(".stem");
+        const leaves = wrapper.querySelectorAll(".leaf");
+        const head = wrapper.querySelector(".tulip-head");
+ 
+        stem.style.animationDelay = `${config.delay}ms`;
+        leaves[0].style.animationDelay = `${config.delay + 250}ms`;
+        leaves[1].style.animationDelay = `${config.delay + 330}ms`;
+        head.style.animationDelay = `${config.delay + 500}ms`;
+ 
+        bouquet.appendChild(wrapper);
+      });
+    }
+ 
+    buildBouquet();
+ 
+    const petalColors = ["#f5bfd9", "#ff8dc7", "#ffd96b", "#ffd96b", "#c4aee8", "#8fcff5"];
+ 
+    function createPetal() {
+      const petal = document.createElement("div");
+      petal.className = "falling-petal";
+ 
+      const size = 7 + Math.random() * 12;
+      const startX = Math.random() * window.innerWidth;
+ 
+      petal.style.left = `${startX}px`;
+      petal.style.width = `${size}px`;
+      petal.style.height = `${size * 1.35}px`;
+      petal.style.background =
+        petalColors[Math.floor(Math.random() * petalColors.length)];
+ 
+      petal.style.setProperty("--drift-1", `${Math.random() * 100 - 50}px`);
+      petal.style.setProperty("--drift-2", `${Math.random() * 220 - 110}px`);
+      petal.style.setProperty("--drift-3", `${Math.random() * 180 - 90}px`);
+      petal.style.setProperty("--drift-4", `${Math.random() * 260 - 130}px`);
+ 
+      petal.style.setProperty("--rotation-1", `${Math.random() * 180 - 90}deg`);
+      petal.style.setProperty("--rotation-2", `${Math.random() * 360 - 180}deg`);
+      petal.style.setProperty("--rotation-3", `${Math.random() * 540 - 270}deg`);
+      petal.style.setProperty("--rotation-4", `${Math.random() * 720 - 360}deg`);
+ 
+      const duration = 5 + Math.random() * 5;
+      petal.style.animationDuration = `${duration}s`;
+ 
+      document.body.appendChild(petal);
+ 
+      setTimeout(() => petal.remove(), duration * 1000 + 500);
+    }
+ 
+    function petalRain(count = 55, intervalMs = 150) {
+      let created = 0;
+ 
+      const interval = setInterval(() => {
+        createPetal();
+        created++;
+ 
+        if (created >= count) {
+          clearInterval(interval);
+        }
+      }, intervalMs);
+    }
+ 
+    const sparkleColors = ["#ff8dc7", "#ffd96b", "#8fcff5", "#c4aee8"];
+ 
+    function createSparkles() {
+      for (let i = 0; i < 25; i++) {
+        setTimeout(() => {
+          const sparkle = document.createElement("div");
+          sparkle.className = "sparkle";
+ 
+          const color = sparkleColors[Math.floor(Math.random() * sparkleColors.length)];
+          sparkle.style.background = color;
+          sparkle.style.boxShadow = `0 0 8px ${color}, 0 0 14px ${color}`;
+ 
+          sparkle.style.left = `${35 + Math.random() * 30}vw`;
+          sparkle.style.top = `${30 + Math.random() * 35}vh`;
+          sparkle.style.setProperty("--x", `${Math.random() * 100 - 50}px`);
+          sparkle.style.setProperty("--y", `${Math.random() * 100 - 50}px`);
+ 
+          document.body.appendChild(sparkle);
+          setTimeout(() => sparkle.remove(), 1300);
+        }, i * 50);
+      }
+    }
+ 
+    function createHearts() {
+      const symbols = ["💗", "🌷", "✨"];
+ 
+      for (let i = 0; i < 8; i++) {
+        setTimeout(() => {
+          const heart = document.createElement("div");
+          heart.className = "heart";
+          heart.textContent =
+            symbols[Math.floor(Math.random() * symbols.length)];
+ 
+          heart.style.left = `${35 + Math.random() * 30}vw`;
+          heart.style.top = `${50 + Math.random() * 15}vh`;
+          heart.style.setProperty("--heart-x", `${Math.random() * 100 - 50}px`);
+ 
+          document.body.appendChild(heart);
+          setTimeout(() => heart.remove(), 2000);
+        }, i * 130);
+      }
+    }
+ 
+    function showSpecialMessage() {
+      specialMessage.classList.remove("show");
+      void specialMessage.offsetWidth;
+      specialMessage.classList.add("show");
+ 
+      setTimeout(() => {
+        specialMessage.classList.remove("show");
+      }, 2800);
+    }
+ 
+    function bloom() {
+      if (busy) return;
+      busy = true;
+ 
+      if (bloomed) {
+        restart();
+        return;
+      }
+ 
+      bloomed = true;
+ 
+      const flowers = document.querySelectorAll(".stem-wrap");
+ 
+      flowers.forEach((flower, index) => {
+        flower.classList.add("bloom");
+ 
+        setTimeout(() => {
+          flower.classList.add("sway");
+        }, 1500 + index * 120);
+      });
+ 
+      setTimeout(() => note.classList.add("show"), 1150);
+ 
+      setTimeout(() => {
+        petalRain();
+        showSpecialMessage();
+      }, 850);
+ 
+      setTimeout(() => createSparkles(), 950);
+      setTimeout(() => createHearts(), 1350);
+ 
+      hint.style.display = "none";
+      button.textContent = "Volver a recibir 🌷";
+ 
+      setTimeout(() => {
+        busy = false;
+      }, 1800);
+    }
+ 
+    function restart() {
+      bloomed = false;
+      note.classList.remove("show");
+      specialMessage.classList.remove("show");
+ 
+      document.querySelectorAll(".stem-wrap").forEach(flower => {
+        flower.classList.remove("bloom", "sway");
+      });
+ 
+      button.textContent = "Recibir las flores 🌷";
+      hint.style.display = "block";
+ 
+      setTimeout(() => {
+        busy = false;
+        bloom();
+      }, 150);
+    }
+ 
+    button.addEventListener("click", bloom);
+  </script>
+</body>
+</html>
